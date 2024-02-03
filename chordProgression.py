@@ -5,6 +5,7 @@
 # ------------------------------------------------------------------------------
 import random
 
+
 class ChordProgression:
 
     def __init__(self, rootNote: str, mode: str, chordNumber: int = 4):
@@ -19,7 +20,7 @@ class ChordProgression:
         if mode not in ['maj', 'min']:
             return
 
-        if chordNumber < 2:
+        if chordNumber not in range(1, 9):
             return
 
         circle: dict = {
@@ -71,9 +72,8 @@ class ChordProgression:
 
         return out
 
-    def changeChord(self, pos : int):
-        if not(0 <= pos < self.chordNumber - 1):
-            return 
-        
-        self.chordProgression[pos] = random.choice(self.scale)
+    def changeChord(self, pos: int):
+        if not (0 <= pos < self.chordNumber - 1):
+            return
 
+        self.chordProgression[pos] = random.choice(self.scale)
