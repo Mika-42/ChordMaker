@@ -13,6 +13,7 @@ from kivy.config import Config
 Config.set('graphics', 'resizable', False)
 Config.set('graphics', 'width', '800')
 Config.set('graphics', 'height', '450')
+Config.set('kivy','window_icon','src/icon.png')
 
 from kivymd.app import MDApp
 from kivy.core.text import LabelBase
@@ -138,6 +139,7 @@ class MainView(MDScreen):
 class ChordMaker(MDApp):
 
     def builder(self):
+        self.icon = 'icon.ico'
         return MainView()
 
 if __name__ == '__main__':
