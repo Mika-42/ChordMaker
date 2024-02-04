@@ -1,0 +1,95 @@
+<ChordButton>:
+    bold: True
+    font_name: 'Cabin Sketch'
+    font_size: 30
+    size: 140, 60
+    ripple_scale: 0
+    
+    theme_text_color: "Custom"
+    text_color: "white"
+    md_bg_color: .13, .13, .13, .2
+    font_color_normal: "white" 
+    font_color_down: "white"
+    background_normal: .13, .13, .13, .2
+    background_down: 1, 1, 1, .2
+
+<RootNoteLabel>:
+    size_hint: None, None
+    size: 200, 150
+    radius: 100
+    pos_hint: {"center_x": .5}
+
+    text: 'C '
+    halign: "center" 
+    valign: "middle"
+    font_name: 'Cabin Sketch'
+    color: "white"
+    font_size: 145
+
+<ModeLabel>:
+    size_hint: None, None
+    size: 100, 50
+    pos_hint: {"center_x": .5}
+
+    text: 'maj'
+    halign: "center" 
+    valign: "middle"
+    font_name: 'Cabin Sketch'
+    color: "white"
+    font_size: 50
+
+<ScaleSelector>:
+    size_hint: None, None
+    size: 270, 270
+    pos_hint: {'center_x' : .5, 'top' : .95}
+    line_color: 'white'
+    radius: 151
+    line_width: 2
+    orientation: 'vertical'
+    padding: 15
+
+    RootNoteLabel:
+    ModeLabel:
+
+
+MainView:
+    #background
+    FitImage:
+        source:"src/background.png"
+    
+    ScaleSelector:
+        
+    #chord button
+    MDGridLayout:
+
+        cols: 4
+        rows: 2
+        spacing: 7
+        padding: [109.5, 316]
+
+        ChordButton:
+            id: btn0
+            on_press: root.disableButton(0)
+        ChordButton:
+            id: btn1
+            on_press: root.disableButton(1)        
+        ChordButton:
+            id: btn2
+            on_press: root.disableButton(2)
+        ChordButton:
+            id: btn3
+            on_press: root.disableButton(3)
+        ChordButton:
+            id: btn4
+            on_press: root.disableButton(4)
+        ChordButton:
+            id: btn5
+            on_press: root.disableButton(5)
+        ChordButton:
+            id: btn6
+            on_press: root.disableButton(6)
+        ChordButton:
+            id: btn7
+            on_press: root.disableButton(7)
+            
+            
