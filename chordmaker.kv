@@ -19,7 +19,7 @@
     radius: 100
     pos_hint: {"center_x": .5}
 
-    text: 'C '
+    text: 'C'
     halign: "center" 
     valign: "middle"
     font_name: 'Cabin Sketch'
@@ -92,4 +92,16 @@ MainView:
             id: btn7
             on_press: root.disableButton(7)
             
-            
+    MakeButton:
+        pos: 715.25, 37
+        size_hint: None,None
+        size: 60, 60
+        radius: [30]
+        orientation: 'vertical'
+        
+        on_touch_up: self.md_bg_color = 1, 1, 1, 0
+
+        MDIcon:
+            icon: "src/make.png"
+            font_size: 60
+            pos_hint: {'center_x': .5,'center_y': .5}

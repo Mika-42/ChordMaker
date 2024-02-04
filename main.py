@@ -2,6 +2,9 @@
 #   project: chord generator
 #
 #   author: matis
+#
+#   src: https://composer-sa-musique.fr/cycle-des-quintes-le-guide-ultime
+#        -3-4-creer-des-suites-daccords-avec-le-cycle/
 # ------------------------------------------------------------------------------
 import kivy
 kivy.require('2.1.0') 
@@ -16,8 +19,20 @@ from kivy.core.text import LabelBase
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.behaviors.toggle_behavior import MDToggleButton
+#from kivy.uix.behaviors import ButtonBehavior
 from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.label import MDLabel
+from kivymd.uix.label import MDLabel, MDIcon
+from kivymd.uix.widget import MDWidget
+
+class MakeButton(MDBoxLayout):
+    def on_touch_down(self, touch):
+        if not(self.collide_point(*touch.pos) and touch.button == 'left'):
+            return super().on_touch_down(touch)
+        
+        self.md_bg_color = .13, .13, .13, .2
+        
+        
+        return super().on_touch_down(touch)
 
 class ChordButton(MDFlatButton, MDToggleButton):
     pass
