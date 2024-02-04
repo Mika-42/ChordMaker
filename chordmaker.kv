@@ -1,17 +1,21 @@
 <ChordButton>:
-    bold: True
-    font_name: 'Cabin Sketch'
-    font_size: 30
+
+    size_hint: None,None
     size: 140, 60
     ripple_scale: 0
-    
-    theme_text_color: "Custom"
-    text_color: "white"
+
     md_bg_color: .13, .13, .13, .2
-    font_color_normal: "white" 
-    font_color_down: "white"
     background_normal: .13, .13, .13, .2
     background_down: 1, 1, 1, .2
+
+    MDLabel:
+        id: chord
+        font_size: 36
+        bold: True
+        font_name: 'Cabin Sketch'
+        color: "white"
+        halign: 'center'
+        valign: 'middle'
 
 <RootNoteLabel>:
     size_hint: None, None
@@ -49,8 +53,10 @@
     padding: 15
 
     RootNoteLabel:
-    ModeLabel:
+        id: rootNote
 
+    ModeLabel:
+        id: mode
 
 MainView:
     #background
@@ -58,14 +64,16 @@ MainView:
         source:"src/background.png"
     
     ScaleSelector:
-        
+        id: scaleSelector
     #chord button
     MDGridLayout:
-
         cols: 4
         rows: 2
         spacing: 7
         padding: [109.5, 316]
+        col_force_default: True
+        col_default_width: 140
+        col_default_height: 60
 
         ChordButton:
             id: btn0
@@ -93,6 +101,7 @@ MainView:
             on_press: root.disableButton(7)
             
     MakeButton:
+        id: makeButton
         pos: 715.25, 37
         size_hint: None,None
         size: 60, 60

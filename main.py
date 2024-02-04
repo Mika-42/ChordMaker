@@ -19,19 +19,40 @@ from kivy.core.text import LabelBase
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.behaviors.toggle_behavior import MDToggleButton
-#from kivy.uix.behaviors import ButtonBehavior
 from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.label import MDLabel, MDIcon
-from kivymd.uix.widget import MDWidget
+from kivymd.uix.label import MDLabel
+from chordProgression import ChordProgression
 
 class MakeButton(MDBoxLayout):
+    
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+
     def on_touch_down(self, touch):
         if not(self.collide_point(*touch.pos) and touch.button == 'left'):
             return super().on_touch_down(touch)
-        
+      
         self.md_bg_color = .13, .13, .13, .2
         
+        numberChords = self.parent.getNumberOfChords()
+        rootNote, mode = self.parent.getScale()
+
+        #clear all buttons
+        for i in range(8):
+            self.parent.ids[f'btn{i}'].ids.chord.text = ''
+
+        if numberChords == 0: 
+            return
         
+        chords = ChordProgression(rootNote, mode, numberChords)
+        chordsStr = [' '.join(i) for i in chords.getChordProgression()]
+        
+
+        for i in range(len(chordsStr)):
+            self.parent.ids[f'btn{i}'].ids.chord.text = chordsStr[i]
+            
+
         return super().on_touch_down(touch)
 
 class ChordButton(MDFlatButton, MDToggleButton):
@@ -87,7 +108,7 @@ class ModeLabel(MDLabel):
      
 class MainView(MDScreen):
     
-    def disableButton(self, btn):
+    def disableButton(self, btn) -> None:
         _btn = self.ids[f'btn{btn}']
         _prev_btn = self.ids[f'btn{btn - (btn > 0)}']
         _next_btn = self.ids[f'btn{btn + (btn < 7)}']
@@ -100,6 +121,20 @@ class MainView(MDScreen):
             if _next_btn.state == 'down':
                 _btn.state = 'down' 
 
+    def getNumberOfChords(self) -> int:
+        count = 0
+        for i in range(8):
+            btn = self.ids[f'btn{i}']
+            count += (btn.state == 'down')
+        return count
+    
+    def getScale(self) -> tuple:
+        parent = self.ids.scaleSelector.ids
+        rootNote = parent.rootNote.text
+        mode = parent.mode.text
+
+        return rootNote, mode
+    
 class ChordMaker(MDApp):
 
     def builder(self):

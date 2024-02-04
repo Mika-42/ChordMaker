@@ -25,10 +25,10 @@ class ChordProgression:
 
         circle: dict = {
             'maj': ['C', 'G', 'D', 'A', 'E',  'B',
-                    'F#', 'C#', 'G#', 'D#', 'A#', 'F'],
+                    'F#', 'C#', 'G#', 'D#', 'A#', 'F'] * 2,
 
             'min': ['A', 'E',  'B', 'F#', 'C#', 'G#',
-                    'D#', 'A#', 'F', 'C', 'G', 'D'],
+                    'D#', 'A#', 'F', 'C', 'G', 'D'] * 2,
         }
 
         self.rootNote: str = notes.index(rootNote)
