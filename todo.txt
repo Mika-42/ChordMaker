@@ -1,0 +1,2 @@
+ajouter une fonction d'écoute des accords
+exporter les accords en midi
